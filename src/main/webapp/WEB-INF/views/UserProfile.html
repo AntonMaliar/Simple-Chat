@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+</head>
+<body>
+	<h3 th:text="${user.getName()}">name user</h3>
+	<hr>
+	<h3>Send message:</h3>
+	<div th:each="recipient : ${allRecipient}">
+		 <form action="openChat">
+		 	<h4 th:text="${recipient.getName()}">user name</h4>
+		 	<input type="hidden" th:value="${user.getId()}" name="senderId" />
+		 	<input type="hidden" th:value="${recipient.getId()}" name="recipientId" />
+		 	<input type="submit" value="open chat">
+		 </form>
+	</div>
+</body>
+</html>

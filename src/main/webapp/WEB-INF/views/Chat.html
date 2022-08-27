@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chat</title>
+</head>
+<body>
+	<h3>Profile</h3>
+	<h3 th:text="${sender.getName()}"></h3>
+	<hr>
+	<div th:each="message : ${chatHistory}">
+		<p th:text="${message.showMessage()}"></p>		
+	</div>
+	<hr>
+	send message to:<p th:text="${recipient.getName()}"></p>
+	
+	<form action="sendMessage">
+		<input type="hidden" th:value="${sender.getId()}" name="senderId" />
+		<input type="hidden" th:value="${recipient.getId()}" name="recipientId" />
+		<input type="text" name="message">
+		<input type="submit" value="send message">
+	</form>
+	<a th:href="@{/userProfile?(id=${sender.getId()})}">Open Profile</a><br>
+	<a href="index.jsp">Welcome Page</a>
+</body>
+</html>
